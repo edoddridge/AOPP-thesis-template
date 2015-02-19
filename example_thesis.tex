@@ -1,0 +1,106 @@
+\documentclass[12pt, oneside]{oxfordthesis}  % default single sided printing
+%\documentclass[12pt,twoside,openright]{ociamthesis} % to use duplex
+
+%load any additional packages
+\usepackage{amssymb}
+\usepackage{subfigure} %to include multiple subfigures in the same figure
+\usepackage{amsmath}
+\usepackage[]{natbib}
+
+
+%set the number of sectioning levels that get numbers and appear in the contents
+% 1=sections, 2=subsections, 3=subsubsections
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{1}
+
+%choose the number of numbers in each equation number
+\numberwithin{equation}{chapter}
+%make it possible to skip between pdf and tex source files
+\synctex=1
+%remove indent from the start of each paragraph
+\setlength{\parindent}{0pt}
+
+\bibpunct[, ]{(}{)}{;}{a}{,}{,~} % puntuation in the bibliography
+
+% Use your personal macros. They're defined in a separate file.
+\include{MyMacros/mymacros}
+
+\title{A Really interesting\\[1ex]     %your thesis title,
+        thesis title}   %note \\[1ex] is a line break in the title
+
+\author{Author's name}             %your name
+\college{Author's College}  %your college
+\supervisor{Prof Super Visor}
+
+%\renewcommand{\submittedtext}{change the default text here if needed}
+\degree{Doctor of Philosophy}     %the degree
+\degreedate{Trinity 2015}         %the degree date
+
+
+% logofile
+\logofile{oxford_logos/ox_brand_cmyk_pos}
+
+% If you want the pdf to have the correct author and title information, you need to enter it again here.
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage[pdfauthor={Author Name},pdftitle={A really Interesting Thesis Title}]{hyperref}
+\hypersetup{
+    colorlinks,%
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=black,%
+    urlcolor=black
+}
+
+% Use the \includeonly command here if you want to produce a smaller output file that has only a particular section or two of the thesis
+%\includeonly{Chapter1/chapter1,Chapter2/chapter2}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Document begins here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%this baselineskip gives sufficient line spacing for an examiner to easily
+%markup the thesis with comments
+\baselineskip=18pt plus1pt
+
+\maketitle                  % create a title page from the preamble info
+\include{Dedication/dedication}        % include a dedication.tex file
+\include{Acknowledgements/acknowledgements}   % include an acknowledgements.tex file
+\include{Abstract/abstract}          % include the abstract
+
+\begin{romanpages}          % start roman page numbering
+\tableofcontents            % generate and include a table of contents
+\listoffigures              % generate and include a list of figures
+\end{romanpages}            % end roman page numbering
+
+
+%now include the files of latex for each of the chapters etc
+
+\include{Chapter1/chapter1}
+\include{Chapter2/chapter2} % this will produce a warning if chapter2.tex doesn't exist, but the document will still compile.
+%\include{conclusions}
+
+
+
+\bibliographystyle{rspublicnat}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{References}
+%make the reference section be called ``References''
+\renewcommand\bibname{References}
+\bibliography{bibtex/bibtexfile}
+\markboth{\bibname}{\bibname}%
+
+
+%now enable appendix numbering format and include any appendices
+\begin{appendices}
+% redefine the headers!
+\renewcommand{\chaptermark}[1]{\markboth{Appendix \ \thechapter \ -  #1}{}}
+
+\include{Appendix1/appendix1}
+
+\end{appendices}
+
+\end{document}
+

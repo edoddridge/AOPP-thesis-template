@@ -1,0 +1,8 @@
+# ignore automatically generated tex files
+*.out
+*.lof
+*.toc
+*.aux
+*.synctex.gz
+*.blg
+*.log
