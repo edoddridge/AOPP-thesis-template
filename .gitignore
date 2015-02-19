@@ -6,3 +6,6 @@
 *.synctex.gz
 *.blg
 *.log
+
+# ignore swap files
+*~
