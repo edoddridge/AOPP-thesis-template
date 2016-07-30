@@ -1,32 +1,65 @@
-\documentclass[12pt, oneside]{oxfordthesis}  % default single sided printing
-%\documentclass[12pt,twoside,openright]{ociamthesis} % to use duplex
+\documentclass[12pt, twoside]{oxfordthesis}  % default single sided printing
+%\documentclass[12pt,twoside,openright]{oxfordthesis} % to use duplex
 
 %load any additional packages
 \usepackage{amssymb}
-\usepackage{subfigure} %to include multiple subfigures in the same figure
+%\usepackage{subfigure} %to include multiple subfigures in the same figure
 \usepackage{amsmath}
-\usepackage[]{natbib}
+\usepackage[sort]{natbib}
+\usepackage{longtable}
+\usepackage{bm}
+\usepackage{esint}
+\usepackage{titlesec}
+\usepackage{booktabs}
+%\usepackage{listings}
+\usepackage{color}
+%\usepackage{pdftexcmds}
+%\usepackage{minted}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\usepackage{upquote}
+\usepackage{graphicx}
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage{subcaption}
+\usepackage[pdfauthor={Author},pdftitle={Snappy title with a pun}]{hyperref}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{float}
 
+\floatstyle{plaintop}
+\newfloat{code}{tbh}{cde}[chapter]
+\floatname{code}{Code snippet}
+
+% \DeclareFloatingEnvironment[fileext=frm,placement={!ht},name=]{code}
+% \captionsetup[code]{labelfont=bf}
+% \floatname{code}{Code snippet}
+
+\titleformat{\chapter}[display]
+  {\bfseries\huge}
+  {\filleft\Large\chaptertitlename~\thechapter}
+  {3ex}
+  {\titlerule\vspace{1.5ex}\filright}
+  [\vspace{1ex}\titlerule]
 
 %set the number of sectioning levels that get numbers and appear in the contents
 % 1=sections, 2=subsections, 3=subsubsections
 \setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
 
 %choose the number of numbers in each equation number
 \numberwithin{equation}{chapter}
 %make it possible to skip between pdf and tex source files
 \synctex=1
 %remove indent from the start of each paragraph
-\setlength{\parindent}{0pt}
+%\setlength{\parindent}{0pt}
 
 \bibpunct[, ]{(}{)}{;}{a}{,}{,~} % puntuation in the bibliography
 
 % Use your personal macros. They're defined in a separate file.
 \include{MyMacros/mymacros}
 
-\title{A Really interesting\\[1ex]     %your thesis title,
-        thesis title}   %note \\[1ex] is a line break in the title
+\title{Snappy title with a pun: \\[1ex]
+boring bit to actually describe what's in the thesis}   %note \\[1ex] is a line break in the title
 
 \author{Author's name}             %your name
 \college{Author's College}  %your college
@@ -41,8 +74,6 @@
 \logofile{oxford_logos/ox_brand_cmyk_pos}
 
 % If you want the pdf to have the correct author and title information, you need to enter it again here.
-\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
-\usepackage[pdfauthor={Author Name},pdftitle={A really Interesting Thesis Title}]{hyperref}
 \hypersetup{
     colorlinks,%
     citecolor=black,%
@@ -63,9 +94,9 @@
 %this baselineskip gives sufficient line spacing for an examiner to easily
 %markup the thesis with comments
 \baselineskip=18pt plus1pt
+\pagenumbering{gobble}% Remove page numbers (and reset to 1)
 
 \maketitle                  % create a title page from the preamble info
-\include{Dedication/dedication}        % include a dedication.tex file
 \include{Acknowledgements/acknowledgements}   % include an acknowledgements.tex file
 \include{Abstract/abstract}          % include the abstract
 
@@ -75,10 +106,11 @@
 \end{romanpages}            % end roman page numbering
 
 
-%now include the files of latex for each of the chapters etc
+\pagenumbering{arabic}
 
-\include{Chapter1/chapter1}
-\include{Chapter2/chapter2} % this will produce a warning if chapter2.tex doesn't exist, but the document will still compile.
+%now include the files of latex for each of the chapters etc
+\include{Intro/intro}
+\include{Methods/methods} % this will produce a warning if chapter2.tex doesn't exist, but the document will still compile.
 %\include{conclusions}
 
 
